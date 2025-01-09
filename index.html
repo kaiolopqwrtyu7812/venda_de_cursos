@@ -1,15 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
+    <title>Venda de Terços Online</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bem-vindo à Minha Página</h1>
-    <p>Essa é a minha página inicial.</p>
-    <img src="https://example.com/imagem.jpg" alt="Exemplo de Imagem">
-    <script src="script.js"></script>
+    <header>
+        <h1>Venda de Terços Online</h1>
+    </header>
+    <main>
+        <section class="intro">
+            <h2>Bem-vindo à Nossa Loja!</h2>
+            <p>Descubra a beleza e a espiritualidade dos nossos terços artesanais. Perfeitos para presentes ou para fortalecer sua fé.</p>
+        </section>
+        <section class="product">
+            <h2>Terços Disponíveis</h2>
+            <div class="carousel">
+                <button class="carousel-btn prev">❮</button>
+                <div class="carousel-images">
+                    <!-- Adicione as imagens dos seus produtos aqui -->
+                    <img src="https://images.tcdn.com.br/img/img_prod/1064297/terco_de_natal_sagrada_familia_modelo_2022_603_1_af0ec7e5018f59312b25f59a5c210dfa.jpg" class="c1" alt="Terço 1">
+                    <img src="https://i.pinimg.com/originals/48/33/c0/4833c08c96a99012c9f5ec139f8aa19c.jpg" class="c1" alt="Terço 2">
+                    <img src="https://img.elo7.com.br/product/zoom/3B94137/terco-personalizado-com-nome-modelo-luxo-terco-artesanal.jpg" class="c1" alt="Terço 3">
+                </div>
+                <button class="carousel-btn next">❯</button>
+            </div>
+        </section>
+        <section class="contact">
+            <h2>Entre em Contato</h2>
+            <form id="contactForm">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Venda de Terços Online</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            window.location.href = `mailto:seuemail@gmail.com?subject=Contato%20de%20${name}&body=${message}`;
+        });
+
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const carouselImages = document.querySelector('.carousel-images');
+        let index = 0;
+
+        nextBtn.addEventListener('click', () => {
+            index = (index + 1) % carouselImages.children.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            index = (index - 1 + carouselImages.children.length) % carouselImages.children.length;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const offset = -index * 100;
+            carouselImages.style.transform = `translateX(${offset}%)`;
+        }
+    </script>
 </body>
 </html>
