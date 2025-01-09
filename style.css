@@ -20,6 +20,29 @@ header {
 
 main {
     padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease;
+    margin: 20px auto;
+    max-width: 1200px; /* Limite a largura máxima para melhor aparência em telas grandes */
+}
+
+/* Estilo para seções dentro do main */
+main section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideInUp 1s ease-in-out;
+}
+
+/* Adicione um efeito hover */
+main section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .intro {
@@ -137,4 +160,65 @@ footer {
 @keyframes slideInUp {
     from { transform: translateY(20px); }
     to { transform: translateY(0); }
+}
+
+/* Adicione transições suaves */
+main {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    transition: transform 0.3s ease;
+    margin: 20px auto;
+    max-width: 1200px; /* Limite a largura máxima para melhor aparência em telas grandes */
+}
+
+/* Adicione um efeito hover */
+main section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Melhorando a responsividade do carousel */
+.carousel-images img {
+    width: 100%; /* Certifica-se de que as imagens ocupam toda a largura do contêiner */
+    border-radius: 10px;
+}
+
+.carousel-btn {
+    background-color: rgba(40, 44, 52, 0.5); /* Altere a cor para combinar com o tema do site */
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(40, 44, 52, 0.7);
+}
+
+/* Adicione pontos de controle (dots) para o carousel */
+.carousel-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.carousel-indicators button {
+    border: none;
+    padding: 5px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicators button.active {
+    background-color: #282c34;
+}
+
+.carousel-indicators button:hover {
+    background-color: #999;
 }

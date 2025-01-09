@@ -5,6 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venda de Terços Online</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("xnsr-iX_51ACpSxlJ");
+        })();
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header, footer {
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        .intro, .product, .contact {
+            padding: 2em;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-images img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            background: gray;
+            border: none;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .carousel-indicators .active {
+            background: black;
+        }
+        .field {
+            margin-bottom: 15px;
+        }
+        .field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .field input, .field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .field textarea {
+            resize: vertical;
+        }
+        #button {
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #button:hover {
+            background-color: #495057;
+        }
+        #confirmation {
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,29 +123,45 @@
         <section class="product">
             <h2>Terços Disponíveis</h2>
             <div class="carousel">
-                <button class="carousel-btn prev">❮</button>
+                <button class="carousel-btn prev" aria-label="Imagem anterior">❮</button>
                 <div class="carousel-images">
-                    <!-- Adicione as imagens dos seus produtos aqui -->
-                    <img src="https://images.tcdn.com.br/img/img_prod/1064297/terco_de_natal_sagrada_familia_modelo_2022_603_1_af0ec7e5018f59312b25f59a5c210dfa.jpg" class="c1" alt="Terço 1">
-                    <img src="https://i.pinimg.com/originals/48/33/c0/4833c08c96a99012c9f5ec139f8aa19c.jpg" class="c1" alt="Terço 2">
-                    <img src="https://img.elo7.com.br/product/zoom/3B94137/terco-personalizado-com-nome-modelo-luxo-terco-artesanal.jpg" class="c1" alt="Terço 3">
+                    <img src="https://images.tcdn.com.br/img/img_prod/1064297/terco_de_natal_sagrada_familia_modelo_2022_603_1_af0ec7e5018f59312b25f59a5c210dfa.jpg" class="c1" alt="Terço da Sagrada Família">
+                    <img src="https://i.pinimg.com/originals/48/33/c0/4833c08c96a99012c9f5ec139f8aa19c.jpg" class="c1" alt="Terço com Cruz">
+                    <img src="https://img.elo7.com.br/product/zoom/3B94137/terco-personalizado-com-nome-modelo-luxo-terco-artesanal.jpg" class="c1" alt="Terço Personalizado">
                 </div>
-                <button class="carousel-btn next">❯</button>
+                <button class="carousel-btn next" aria-label="Próxima imagem">❯</button>
+            </div>
+            <div class="carousel-indicators">
+                <button class="active" aria-label="Imagem 1"></button>
+                <button aria-label="Imagem 2"></button>
+                <button aria-label="Imagem 3"></button>
             </div>
         </section>
         <section class="contact">
             <h2>Entre em Contato</h2>
-            <form id="contactForm">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" required>
-                
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Mensagem:</label>
-                <textarea id="message" name="message" required></textarea>
-                
-                <button type="submit">Enviar</button>
+            <form id="form">
+                <div class="field">
+                    <label for="to_name">Para:</label>
+                    <input type="text" name="to_name" id="to_name" required>
+                </div>
+                <div class="field">
+                    <label for="from_name">De:</label>
+                    <input type="text" name="from_name" id="from_name" required>
+                </div>
+                <div class="field">
+                    <label for="message">Mensagem:</label>
+                    <input type="text" name="message" id="message" required>
+                </div>
+                <div class="field">
+                    <label for="email_id">Email:</label>
+                    <input type="email" name="email_id" id="email_id" required>
+                </div>
+                <div class="field">
+                    <label for="reply_to">Responder para:</label>
+                    <input type="email" name="reply_to" id="reply_to" required>
+                </div>
+                <button type="submit" id="button">Enviar</button>
+                <p id="confirmation" class="hidden">Obrigado por entrar em contato! Nós responderemos em breve.</p>
             </form>
         </section>
     </main>
@@ -49,18 +170,28 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
+        document.getElementById('form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            
+            document.getElementById('button').value = 'Enviando...';
+            document.getElementById('button').disabled = true;
 
-            window.location.href = `mailto:seuemail@gmail.com?subject=Contato%20de%20${name}&body=${message}`;
+            emailjs.sendForm('default_service', 'template_cu771jc', this)
+                .then(() => {
+                    document.getElementById('button').value = 'Enviar';
+                    document.getElementById('button').disabled = false;
+                    document.getElementById('confirmation').classList.remove('hidden');
+                }, (err) => {
+                    document.getElementById('button').value = 'Enviar';
+                    document.getElementById('button').disabled = false;
+                    alert(JSON.stringify(err));
+                });
         });
 
         const prevBtn = document.querySelector('.prev');
         const nextBtn = document.querySelector('.next');
         const carouselImages = document.querySelector('.carousel-images');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
         let index = 0;
 
         nextBtn.addEventListener('click', () => {
@@ -73,9 +204,19 @@
             updateCarousel();
         });
 
+        indicators.forEach((button, i) => {
+            button.addEventListener('click', () => {
+                index = i;
+                updateCarousel();
+            });
+        });
+
         function updateCarousel() {
             const offset = -index * 100;
             carouselImages.style.transform = `translateX(${offset}%)`;
+            indicators.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
         }
     </script>
 </body>
